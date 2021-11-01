@@ -32,6 +32,7 @@ dependencies:
   video_player: ^2.2.3
   # audioplayers: ^0.20.1
   get: ^4.3.8
+  lottie: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -48,10 +49,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  # - assets/images
-  # - assets/lotties
-  # - assets/icons
+  assets:
+    - assets/lottie/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
@@ -63,7 +62,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-fonts:
+  fonts:
+    - family: SDChildFund
+      fonts:
+        - asset: assets/font/SDChildfundKoreaTTF.ttf
   # - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
@@ -73,13 +75,6 @@ fonts:
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
-  - family: SDChildFund
-    fonts:
-      - asset: assets/fonts/SDChildfundkoreaTTF.ttf
-  - family: Gamja
-    fonts:
-      - asset: assets/fonts/GamjaFlower-Regular.ttf
-
   # - family: nanum_effort
   #   fonts:
   #     - asset: assets/fonts/nanum_effort.ttf

@@ -9,7 +9,7 @@ void main() {
     initialRoute: Routes.HOME,
     theme: ThemeData(
       fontFamily: "SDChildFund",
-      accentColor: Color(0xff95DAC1),
+      accentColor: Color(0xff8581B6),
     ),
   ));
 }
