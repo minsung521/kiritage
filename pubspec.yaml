@@ -48,8 +48,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - assets/
+  # assets:
+  # - assets/images
+  # - assets/lotties
+  # - assets/icons
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
@@ -62,7 +64,7 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
 fonts:
-  #   - family: Schyler
+  # - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
@@ -74,10 +76,12 @@ fonts:
   - family: SDChildFund
     fonts:
       - asset: assets/fonts/SDChildfundkoreaTTF.ttf
-        weight: 700
-  - family: nanum_effort
+  - family: Gamja
     fonts:
-      - asset: assets/fonts/nanum_effort.ttf
-        weight: 700
+      - asset: assets/fonts/GamjaFlower-Regular.ttf
+
+  # - family: nanum_effort
+  #   fonts:
+  #     - asset: assets/fonts/nanum_effort.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

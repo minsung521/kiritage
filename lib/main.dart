@@ -7,5 +7,9 @@ void main() {
     debugShowCheckedModeBanner: false,
     getPages: AppPages.routes,
     initialRoute: Routes.HOME,
+    theme: ThemeData(
+      fontFamily: "SDChildFund",
+      accentColor: Color(0xff95DAC1),
+    ),
   ));
 }
