@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
+import 'package:kiritage/app/routes/home_route.dart';
 import 'package:kiritage/app/ui/UiAsset.dart';
 
 File? image;
@@ -66,7 +67,11 @@ class _CameraState extends State<Camera> {
                 child: Column(
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        getImage(ImageSource.gallery).whenComplete(() {
+                          Get.toNamed(Routes.RESULT);
+                        });
+                      },
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xff6F69AC),
                         elevation: 3.0,
@@ -94,7 +99,11 @@ class _CameraState extends State<Camera> {
                       height: size.height * (12 / UiAssets.xdheight),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        getImage(ImageSource.camera).whenComplete(() {
+                          Get.toNamed(Routes.RESULT);
+                        });
+                      },
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xffE2E1EE),
                         elevation: 3.0,
