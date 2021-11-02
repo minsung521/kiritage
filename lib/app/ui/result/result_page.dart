@@ -16,38 +16,30 @@ class ResultPage extends GetView<ResultController> {
       builder: (_) {
         final result = Data.engDict[_.post.title];
 
-        if (result == null)
-          return Center(child: Text("지원하지 않는 문화재입니다."));
-        else {
-          List<String> codes = result.split(" ");
-          getAll(codes[0], codes[1], codes[2]).then((_) {
-            //요 부분 수정
-            return SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(audioUrl),
-                  Text(imageUrl.toString()),
-                  Text(videoUrl),
-                  Text(info)
-                ],
-              ),
-            );
-            //요 부분 수정
-          });
-        }
+        if (result == null) return Center(child: CircularProgressIndicator());
+
+        List<String> codes = result.split(" ");
+
+        if (_.post.title == "") return Center(child: Text("지원하지 않는 문화재입니다."));
+
+        getAll(codes[0], codes[1], codes[2]).then((_) {
+          //요 부분 수정
+          return SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(audioUrl),
+                Text(imageUrl.toString()),
+                Text(videoUrl),
+                Text(info)
+              ],
+            ),
+          );
+          //요 부분 수정
+        });
+
         //요 부분 수정
-        return SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(audioUrl),
-              Text(imageUrl.toString()),
-              Text(videoUrl),
-              Text(info)
-            ],
-          ),
-        );
+        return Container();
         //요 부분 수정
       },
     )));
