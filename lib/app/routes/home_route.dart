@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:kiritage/app/binding/result_binding.dart';
 import 'package:kiritage/app/ui/camera/camera.dart';
 import 'package:kiritage/app/ui/camera/img_check.dart';
 import 'package:kiritage/app/ui/edu/edu_content.dart';
@@ -7,6 +8,7 @@ import 'package:kiritage/app/ui/home/home.dart';
 import 'package:kiritage/app/ui/login/login.dart';
 import 'package:kiritage/app/ui/question/question.dart';
 import 'package:kiritage/app/ui/result/result_page.dart';
+import 'package:kiritage/app/ui/result/search_result.dart';
 import 'package:kiritage/app/ui/search/search.dart';
 import 'package:kiritage/app/ui/settings/setttings.dart';
 import 'package:kiritage/app/ui/splash/splash.dart';
@@ -23,6 +25,7 @@ abstract class Routes {
   static const SETTINGS = '/settings';
   static const QUESTION = '/question';
   static const SPLASH = '/splash';
+  static const SEARCHRESULT = '/serachresult';
 }
 
 class AppPages {
@@ -33,10 +36,14 @@ class AppPages {
     GetPage(name: Routes.LOGIN, page: () => Login()),
     GetPage(name: Routes.CAMERA, page: () => Camera()),
     GetPage(name: Routes.IMGCHECK, page: () => ImgCheck()),
-    GetPage(name: Routes.RESULT, page: () => Result()),
+    GetPage(
+        name: Routes.RESULT,
+        page: () => ResultPage(),
+        binding: ResultBinding()),
     GetPage(name: Routes.SEARCH, page: () => Search()),
     GetPage(name: Routes.SETTINGS, page: () => Settings()),
     GetPage(name: Routes.QUESTION, page: () => Question()),
     GetPage(name: Routes.SPLASH, page: () => SplashScreen()),
+    GetPage(name: Routes.SEARCHRESULT, page: () => SearchResult())
   ];
 }

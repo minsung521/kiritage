@@ -10,6 +10,7 @@ class SearchBar extends StatelessWidget {
   }) : super(key: key);
 
   final Size size;
+  static final myController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +41,7 @@ class SearchBar extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextField(
+                    controller: myController,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       border: InputBorder.none,
