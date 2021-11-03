@@ -17,7 +17,7 @@ class Question extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: size.height * (20 / UiAssets.xdheight),
+            height: size.height * (150 / UiAssets.xdheight),
           ),
           Text(
             "질문하기",
@@ -30,7 +30,28 @@ class Question extends StatelessWidget {
           ),
           SearchBar(size: size),
           SizedBox(
-            height: size.height * (10 / UiAssets.xdheight),
+            height: size.height * (48 / UiAssets.xdheight),
+          ),
+          ExpansionTileCard(
+            title: Text("다보탑 이야기가 궁금해요"),
+            leading: CircleAvatar(
+              child: Text("Q"),
+            ),
+            children: [Text("이후 업데이트가 됨에 따라 답변드리도록 하겠습니다")],
+          ),
+          ExpansionTileCard(
+            title: Text("다보탑 이야기가 궁금해요"),
+            leading: CircleAvatar(
+              child: Text("Q"),
+            ),
+            children: [Text("이후 업데이트가 됨에 따라 답변드리도록 하겠습니다")],
+          ),
+          ExpansionTileCard(
+            title: Text("다보탑 이야기가 궁금해요"),
+            leading: CircleAvatar(
+              child: Text("Q"),
+            ),
+            children: [Text("이후 업데이트가 됨에 따라 답변드리도록 하겠습니다")],
           ),
           ExpansionTileCard(
             title: Text("다보탑 이야기가 궁금해요"),

@@ -28,7 +28,7 @@ class EduList extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: size.height * (70 / UiAssets.xdheight),
+            height: size.height * (150 / UiAssets.xdheight),
           ),
           Text(
             "오늘은 무엇을 배워볼까요?",
@@ -47,7 +47,7 @@ class EduList extends StatelessWidget {
           ),
           SearchBar(size: size),
           SizedBox(
-            height: size.height * (10 / UiAssets.xdheight),
+            height: size.height * (30 / UiAssets.xdheight),
           ),
           Text(
             "오늘의 문화재",
@@ -56,42 +56,45 @@ class EduList extends StatelessWidget {
             ),
             textAlign: TextAlign.left,
           ),
-          CarouselSlider(
-            options: CarouselOptions(
-                autoPlay: true,
-                height: size.height * (300 / UiAssets.xdheight)),
-            items: [
-              1,
-              2,
-              3,
-            ].map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return GestureDetector(
-                    onTap: () {
-                      SearchBar.myController.text = first[i - 1];
-                      Get.toNamed(Routes.SEARCHRESULT);
-                    },
-                    child: Container(
-                        width: size.width * (300 / UiAssets.xdwidth),
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(
-                            color: colorList[i],
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: Center(
-                          child: Text(
-                            first[i - 1],
-                            style: TextStyle(fontSize: 16.0),
-                          ),
-                        )),
-                  );
-                },
-              );
-            }).toList(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: CarouselSlider(
+              options: CarouselOptions(
+                  autoPlay: true,
+                  height: size.height * (240 / UiAssets.xdheight)),
+              items: [
+                1,
+                2,
+                3,
+              ].map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return GestureDetector(
+                      onTap: () {
+                        SearchBar.myController.text = first[i - 1];
+                        Get.toNamed(Routes.SEARCHRESULT);
+                      },
+                      child: Container(
+                          width: size.width * (300 / UiAssets.xdwidth),
+                          margin: EdgeInsets.symmetric(horizontal: 5.0),
+                          decoration: BoxDecoration(
+                              color: colorList[i],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                          child: Center(
+                            child: Text(
+                              first[i - 1],
+                              style: TextStyle(fontSize: 32),
+                            ),
+                          )),
+                    );
+                  },
+                );
+              }).toList(),
+            ),
           ),
           SizedBox(
-            height: size.height * (10 / UiAssets.xdheight),
+            height: size.height * (28 / UiAssets.xdheight),
           ),
           Text(
             "연령별대로 공부하기",
@@ -100,32 +103,36 @@ class EduList extends StatelessWidget {
             ),
             textAlign: TextAlign.left,
           ),
-          CarouselSlider(
-            options: CarouselOptions(
-                autoPlay: true,
-                height: size.height * (250 / UiAssets.xdheight)),
-            items: [
-              1,
-              2,
-              3,
-            ].map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                      width: size.width * (300 / UiAssets.xdwidth),
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(
-                          color: colorList[i],
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: Center(
-                        child: Text(
-                          second[i - 1],
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                      ));
-                },
-              );
-            }).toList(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CarouselSlider(
+              options: CarouselOptions(
+                  autoPlay: true,
+                  height: size.height * (120 / UiAssets.xdheight)),
+              items: [
+                1,
+                2,
+                3,
+              ].map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                        width: size.width * (300 / UiAssets.xdwidth),
+                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(
+                            color: colorList[i],
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        child: Center(
+                          child: Text(
+                            second[i - 1],
+                            style: TextStyle(fontSize: 32.0),
+                          ),
+                        ));
+                  },
+                );
+              }).toList(),
+            ),
           )
         ],
       ),
