@@ -28,8 +28,12 @@ class MyApiClient {
 
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
+      MyModel? myModel;
 
-      MyModel myModel = MyModel.fromJson(jsonResponse);
+      if (jsonResponse['responses'][0].isEmpty) {
+        myModel = MyModel();
+      } else
+        myModel = MyModel.fromJson(jsonResponse);
 
       return myModel;
     } else {

@@ -16,7 +16,7 @@ class Data {
     "Gyeongju National Museum": " 11 00290000 37",
     "Cheomseongdae": "11 00310000 37",
     "Namhansanseong": " 13 00570000 31",
-    "Donggung Palace and Wolju Pond": "13 00180000 37",
+    "Donggung Palace and Wolji Pond": "13 00180000 37",
     "Gyeongbokgung": "11 02230000 11",
     "Bulguksa": "11 00200000 37",
     "Haeinsa": "13 05040000 38",
