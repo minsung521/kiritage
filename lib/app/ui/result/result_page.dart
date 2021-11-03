@@ -6,6 +6,7 @@ import 'package:kiritage/app/data/provider/database.dart';
 import 'package:kiritage/app/routes/home_route.dart';
 import 'package:kiritage/app/ui/UiAsset.dart';
 import 'package:kiritage/app/ui/result/audio.dart';
+import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 
 class ResultPage extends GetView<ResultController> {
   Future getChaApi(String post) async {
@@ -139,12 +140,18 @@ class Result extends StatefulWidget {
 
 class _ResultState extends State<Result> {
   bool isFirst = false;
-
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 10)).whenComplete(() {
-      print("4초후");
+    ProgressDialog pd = ProgressDialog(context: context);
+    Future.delayed(Duration.zero, () {
+      pd.show(msg: "데이터베이스 불러오는 중...", max: 100);
+    });
+    Future.delayed(Duration(milliseconds: 2500)).then((value) {
+      for (int i = 0; i < 2; i++) {
+        pd.update(value: 50 * (i + 1));
+        Future.delayed(Duration(seconds: 1));
+      }
       setState(() {});
     });
   }

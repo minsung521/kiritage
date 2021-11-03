@@ -28,7 +28,7 @@ class EduList extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: size.height * (20 / UiAssets.xdheight),
+            height: size.height * (70 / UiAssets.xdheight),
           ),
           Text(
             "오늘은 무엇을 배워볼까요?",
