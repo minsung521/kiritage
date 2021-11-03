@@ -37,6 +37,8 @@ class ResultPage extends GetView<ResultController> {
 
         final imageTemp = imageUrl;
         imageUrl = [];
+        final infoTemp = info;
+        info = "";
 
         //요 부분 수정
         print("FAST");
@@ -115,7 +117,7 @@ class ResultPage extends GetView<ResultController> {
                     width: size.width * (348 / UiAssets.xdwidth),
                     child: Center(
                       child: Text(
-                        info != "" ? info : "내용이 없습니다",
+                        infoTemp != "" ? infoTemp : "내용이 없습니다",
                         style: TextStyle(fontSize: 20),
                       ),
                     )),
@@ -136,10 +138,12 @@ class Result extends StatefulWidget {
 }
 
 class _ResultState extends State<Result> {
+  bool isFirst = false;
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 6)).whenComplete(() {
+    Future.delayed(Duration(seconds: 10)).whenComplete(() {
       print("4초후");
       setState(() {});
     });

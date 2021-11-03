@@ -10,6 +10,7 @@ class Data {
     "다보탑": "11 00200000 37",
     "석굴암": "12 09110000 37",
     "해인사": "13 05040000 38",
+    "종묘": "13 01250000 11"
   };
   static Map<String, String> engDict = {
     "Sungnyemun Gate": "11 00010000 11",
@@ -20,5 +21,6 @@ class Data {
     "Gyeongbokgung": "11 02230000 11",
     "Bulguksa": "11 00200000 37",
     "Haeinsa": "13 05040000 38",
+    "Jongmyo Shrine": "13 01250000 11"
   };
 }
