@@ -17,4 +17,8 @@ class ResultController extends GetxController {
   Future getAll() async {
     repository.getAll().then((data) => this.post = data);
   }
+
+  Future delay() async {
+    await Future.delayed(Duration(seconds: 3));
+  }
 }

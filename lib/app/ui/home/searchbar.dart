@@ -71,7 +71,7 @@ class SearchBar extends StatelessWidget {
                       ],
                     ),
                   ),
-                  onTap: () => {},
+                  onTap: () => {Get.toNamed(Routes.SEARCHRESULT)},
                 ),
               ],
             ),

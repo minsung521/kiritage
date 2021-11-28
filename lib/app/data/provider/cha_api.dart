@@ -12,10 +12,11 @@ Future getInfo() async {
 }
 
 Future getInformationAudio(
-    String kindCode,
-    String designatedNum,
-    String cityCode,
-    ) async {
+  String kindCode,
+  String designatedNum,
+  String cityCode,
+) async {
+  audioUrl = "";
   String url =
       'http://www.cha.go.kr/cha/SearchVoiceOpenapi.do?ccbaKdcd=$kindCode&ccbaAsno=$designatedNum&ccbaCtcd=$cityCode&ccbaGbn=kr';
 
@@ -23,18 +24,20 @@ Future getInformationAudio(
 
   final document = xml.parse(response.body);
 
-  audioUrl =document
+  audioUrl = document
       .getElement('result')!
-      .getElement('item')!.getElement('voiceUrl')!.text;
+      .getElement('item')!
+      .getElement('voiceUrl')!
+      .text;
 }
 
 List<String> imageUrl = [];
 
 Future getInformationImage(
-    String kindCode,
-    String designatedNum,
-    String cityCode,
-    ) async {
+  String kindCode,
+  String designatedNum,
+  String cityCode,
+) async {
   String url =
       'http://www.cha.go.kr/cha/SearchImageOpenapi.do?ccbaKdcd=$kindCode&ccbaAsno=$designatedNum&ccbaCtcd=$cityCode';
 
@@ -42,20 +45,22 @@ Future getInformationImage(
 
   final document = xml.parse(response.body);
 
-
-  imageUrl =document
+  imageUrl = document
       .getElement('result')!
-      .getElement('item')!.findAllElements('imageUrl').map((e) => e.text).toList();
-
+      .getElement('item')!
+      .findAllElements('imageUrl')
+      .map((e) => e.text)
+      .toList();
 }
 
 String info = "";
+String name = "";
 
 Future getInformationInfo(
-    String kindCode,
-    String designatedNum,
-    String cityCode,
-    ) async {
+  String kindCode,
+  String designatedNum,
+  String cityCode,
+) async {
   String url =
       'http://www.cha.go.kr/cha/SearchKindOpenapiDt.do?ccbaKdcd=$kindCode&ccbaAsno=$designatedNum&ccbaCtcd=$cityCode';
 
@@ -69,6 +74,12 @@ Future getInformationInfo(
       .getElement('result')!
       .getElement('item')!
       .getElement('content')!
+      .text;
+
+  name = document
+      .getElement('result')!
+      .getElement('item')!
+      .getElement('ccbaMnm1')!
       .text;
 }
 
@@ -85,10 +96,10 @@ Future getInformationText() async {
 }
 
 Future getInformationVideo(
-    String kindCode,
-    String designatedNum,
-    String cityCode,
-    ) async {
+  String kindCode,
+  String designatedNum,
+  String cityCode,
+) async {
   String url =
       'http://www.cha.go.kr/cha/SearchVideoOpenapi.do?ccbaKdcd=$kindCode&ccbaAsno=$designatedNum&ccbaCtcd=$cityCode';
 
@@ -103,13 +114,12 @@ Future getInformationVideo(
       .text;
 }
 
-Future getAll( String kindCode,
-    String designatedNum,
-    String cityCode,) async {
-  getInformationInfo(kindCode, designatedNum, cityCode);
-  getInformationImage(kindCode, designatedNum, cityCode);
-  getInformationAudio(kindCode, designatedNum, cityCode);
-  getInformationVideo(kindCode, designatedNum, cityCode);
-
-
+Future getAll(
+  String kindCode,
+  String designatedNum,
+  String cityCode,
+) async {
+  await getInformationImage(kindCode, designatedNum, cityCode);
+  await getInformationInfo(kindCode, designatedNum, cityCode);
+  await getInformationAudio(kindCode, designatedNum, cityCode);
 }

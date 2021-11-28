@@ -3,53 +3,163 @@ import 'package:get/get.dart';
 import 'package:kiritage/app/controller/controller.dart';
 import 'package:kiritage/app/data/provider/cha_api.dart';
 import 'package:kiritage/app/data/provider/database.dart';
+import 'package:kiritage/app/routes/home_route.dart';
+import 'package:kiritage/app/ui/UiAsset.dart';
+import 'package:kiritage/app/ui/result/audio.dart';
+import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 
 class ResultPage extends GetView<ResultController> {
+  Future getChaApi(String post) async {
+    String? result = Data.engDict[post];
+    if (result == null) {
+      if (isFirst) return Center(child: Text("지원하지 않습니다"));
+      isFirst = true;
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    List<String> codes = result.split(" ");
+    await getAll(codes[0], codes[1], codes[2]);
+  }
+
+  bool isFirst = false;
+
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: Container(
             child: GetX<ResultController>(
-      initState: (state) {
-        Get.find<ResultController>().getAll();
+      initState: (state) async {
+        await Get.find<ResultController>().getAll();
       },
       builder: (_) {
-        final result = Data.engDict[_.post.title];
+        getChaApi(_.post.title);
 
-        if (result == null)
-          return Center(child: Text("지원하지 않는 문화재입니다."));
-        else {
-          List<String> codes = result.split(" ");
-          getAll(codes[0], codes[1], codes[2]).then((_) {
-            //요 부분 수정
-            return SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(audioUrl),
-                  Text(imageUrl.toString()),
-                  Text(videoUrl),
-                  Text(info)
-                ],
-              ),
-            );
-            //요 부분 수정
-          });
-        }
+        final imageTemp = imageUrl;
+        imageUrl = [];
+        final infoTemp = info;
+        info = "";
+
         //요 부분 수정
+        print("FAST");
         return SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(audioUrl),
-              Text(imageUrl.toString()),
-              Text(videoUrl),
-              Text(info)
+              Container(
+                height: size.height * (373 / UiAssets.xdheight),
+                width: size.width,
+                child: imageTemp.length == 0
+                    ? Center(child: Text("사진이 없습니다!"))
+                    : Stack(
+                        children: [
+                          Center(
+                              child: Image.network(imageTemp[0],
+                                  fit: BoxFit.fitWidth)),
+                          Container(
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                              Colors.black,
+                              Colors.transparent,
+                            ],
+                          ))),
+                          Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Text(
+                                "$name",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ))
+                        ],
+                      ),
+              ),
+              SizedBox(
+                height: size.height * (29 / UiAssets.xdheight),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+                child: Row(
+                  children: [
+                    Container(
+                      height: size.height * (61 / UiAssets.xdheight),
+                      width: size.width * (240 / UiAssets.xdwidth),
+                      decoration: BoxDecoration(
+                          color: Color(0xffE2F5EE),
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                      child: AudioPlayerWidget(
+                        url: audioUrl,
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.width * (28 / UiAssets.xdwidth),
+                    ),
+                    Container(
+                        height: size.height * (61 / UiAssets.xdheight),
+                        width: size.width * (60 / UiAssets.xdwidth),
+                        decoration: BoxDecoration(
+                            color: Color(0xffFFEBA1),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        child: Icon(Icons.share)),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: size.height * (35 / UiAssets.xdheight),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Container(
+                    height: size.height * (350 / UiAssets.xdheight),
+                    width: size.width * (348 / UiAssets.xdwidth),
+                    child: Center(
+                      child: Text(
+                        infoTemp != "" ? infoTemp : "내용이 없습니다",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    )),
+              )
             ],
           ),
-        );
-        //요 부분 수정
+        ); //요 부분 수정
       },
     )));
+  }
+}
+
+class Result extends StatefulWidget {
+  const Result({Key? key}) : super(key: key);
+
+  @override
+  _ResultState createState() => _ResultState();
+}
+
+class _ResultState extends State<Result> {
+  bool isFirst = false;
+  @override
+  void initState() {
+    super.initState();
+    ProgressDialog pd = ProgressDialog(context: context);
+    Future.delayed(Duration.zero, () {
+      pd.show(msg: "데이터베이스 불러오는 중...", max: 100);
+    });
+    Future.delayed(Duration(milliseconds: 2500)).then((value) {
+      for (int i = 0; i < 2; i++) {
+        pd.update(value: 50 * (i + 1));
+        Future.delayed(Duration(seconds: 1));
+      }
+      setState(() {});
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ResultPage(),
+    );
   }
 }

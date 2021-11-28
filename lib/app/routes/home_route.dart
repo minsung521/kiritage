@@ -37,9 +37,7 @@ class AppPages {
     GetPage(name: Routes.CAMERA, page: () => Camera()),
     GetPage(name: Routes.IMGCHECK, page: () => ImgCheck()),
     GetPage(
-        name: Routes.RESULT,
-        page: () => ResultPage(),
-        binding: ResultBinding()),
+        name: Routes.RESULT, page: () => Result(), binding: ResultBinding()),
     GetPage(name: Routes.SEARCH, page: () => Search()),
     GetPage(name: Routes.SETTINGS, page: () => Settings()),
     GetPage(name: Routes.QUESTION, page: () => Question()),
